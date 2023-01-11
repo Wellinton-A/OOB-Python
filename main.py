@@ -1,5 +1,6 @@
 import csv
 
+
 class Item:
     rate_disc = 0.8
 
@@ -22,11 +23,23 @@ class Item:
         return self.quantity * self.price
 
     @classmethod
+    def dict_price_items(cls):
+        for i in Item.all:
+            dict_items.update({i.name: i.price})
+
+    @classmethod
+    def max_value_item(cls):
+        key_list = list(dict_items.keys())
+        value_list = list(dict_items.values())
+        max_value = {key_list[value_list.index(max(value_list))]: max(value_list)}
+        print(f'the most valuable stock of items is: {max_value}')
+
+    @classmethod
     def instantiate_from_csv(cls):
-        with open('items.csv','r') as f:
+        with open('items.csv', 'r') as f:
             reader = csv.DictReader(f)
             items = list(reader)
-        
+
         for item in items:
             Item(
                 name=item.get('name'),
@@ -39,23 +52,14 @@ class Item:
 
 
 Item.instantiate_from_csv()
-
-print(Item.all)
 dict_items = {}
 
-
-def dict_all_items():
-    for i in Item.all:
-        dict_items.update({i.name: i.price})
+Item.dict_price_items()
+Item.max_value_item()
 
 
-dict_all_items()
 
 
-def max_value_item():
-    key_list = list(dict_items.keys())
-    value_list = list(dict_items.values())
-    max_value = {key_list[value_list.index(max(value_list))]: max(value_list)}
-    return max_value
 
-print(max_value_item())
+
+# print(max_value_item())
