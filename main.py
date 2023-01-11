@@ -40,7 +40,7 @@ class Item:
 
 Item.instantiate_from_csv()
 
-# print(Item.all)
+print(Item.all)
 dict_items = {}
 
 
