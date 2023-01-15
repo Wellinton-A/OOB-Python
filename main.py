@@ -46,6 +46,15 @@ class Item:
                 price=float(item.get('price')),
                 quantity=int(item.get('quantity')),
             )
+    
+    @staticmethod
+    def obj_type(obj):
+        if isinstance(obj, type(obj)):
+            return f'\'{obj}\' is a {type(obj)}'
+        else:
+            return False
+
+
 
     def __repr__(self):
         return f"Item('{self.name}', {self.price}, {self.quantity})"
@@ -53,7 +62,8 @@ class Item:
 
 Item.instantiate_from_csv()
 dict_items = {}
-
+# print(Item.all)
+print(Item.obj_type(dict_items))
 Item.dict_price_items()
 Item.max_value_item()
 
@@ -62,4 +72,4 @@ Item.max_value_item()
 
 
 
-# print(max_value_item())
+
