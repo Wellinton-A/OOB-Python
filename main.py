@@ -31,7 +31,8 @@ class Item:
     def max_value_item(cls):
         key_list = list(dict_items.keys())
         value_list = list(dict_items.values())
-        max_value = {key_list[value_list.index(max(value_list))]: max(value_list)}
+        max_value = {key_list[value_list.index(
+            max(value_list))]: max(value_list)}
         print(f'the most valuable stock of items is: {max_value}')
 
     @classmethod
@@ -46,7 +47,7 @@ class Item:
                 price=float(item.get('price')),
                 quantity=int(item.get('quantity')),
             )
-    
+
     @staticmethod
     def obj_type(obj):
         if isinstance(obj, type(obj)):
@@ -54,22 +55,24 @@ class Item:
         else:
             return False
 
-
-
     def __repr__(self):
-        return f"Item('{self.name}', {self.price}, {self.quantity})"
+        return f"{self.__class__.__name__}('{self.name}', {self.price}, {self.quantity})"
+
+class Phones(Item):
+    all = []
+    def __init__(self, name: str, price: float, quantity=0, broken=0):
+        super().__init__(name, price, quantity)
+        self.broken = broken
+
+        Phones.all.append(self)
 
 
 Item.instantiate_from_csv()
 dict_items = {}
-# print(Item.all)
+Phones('Phone1', 99.90, 10, 5)
 print(Item.obj_type(dict_items))
 Item.dict_price_items()
 Item.max_value_item()
-
-
-
-
-
-
-
+print(Phones.all)
+print(Item.all)
+# print(dir(int()))
