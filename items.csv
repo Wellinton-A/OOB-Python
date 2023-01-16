@@ -1,16 +1,16 @@
 name,price,quantity
-'Laptop',999.90,50
-'Keyboard',47.80,150
-'Mouse',25.99,100
-'TV',749.50,25
-'PS5',1499.90,10
-'Monitor',999.90,30
-'Ball',5.9,500
-'Smartphone',1050.99,50
-'CPU',1350.79,10
-'RAM Memory',250,850
-'Smartwatch',500.80,450
-'Dog',1875.89,550
-'Cat',1359.89,5
-'Necklace',150.99,95
-'Tesla',25856.89,4
+Laptop,999.90,50
+Keyboard,47.80,150
+Mouse,25.99,100
+TV,749.50,25
+PS5,1499.90,10
+Monitor,999.90,30
+Ball,5.9,500
+Smartphone,1050.99,50
+CPU,1350.79,10
+RAM Memory,250,850
+Smartwatch,500.80,450
+Dog,1875.89,550
+Cat,1359.89,5
+Necklace,150.99,95
+Tesla,25856.89,4

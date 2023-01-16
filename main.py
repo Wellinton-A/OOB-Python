@@ -9,18 +9,28 @@ class Item:
     def __init__(self, name: str, price: float, quantity: int):
         self.name = name
         self.price = price
-        self.quantity = quantity
+        self.__quantity = quantity
 
         Item.all.append(self)
 
-    def sold_item(self, n: int):
-        self.quantity = self.quantity - n
+    @property
+    def quantity(self):
+        return self.__quantity
 
-    def add_item(self, n: int):
-        self.quantity = self.quantity + n
+    @classmethod
+    def sold_item(self, name_of: str, n: int):
+        for i in Item.all:
+            if i.name == name_of:
+                i.__quantity = i.__quantity - n
+
+    @classmethod
+    def add_item(self, name_of: str, n: int):
+        for i in Item.all:
+            if i.name == name_of:
+                i.__quantity = i.__quantity + n
 
     def total_value_items(self):
-        return self.quantity * self.price
+        return self.__quantity * self.price
 
     @classmethod
     def dict_price_items(cls):
@@ -56,15 +66,26 @@ class Item:
             return False
 
     def __repr__(self):
-        return f"{self.__class__.__name__}('{self.name}', {self.price}, {self.quantity})"
+        return f"{self.__class__.__name__}('{self.name}', {self.price}, {self.__quantity})"
+
 
 class Phones(Item):
     all = []
+
     def __init__(self, name: str, price: float, quantity=0, broken=0):
         super().__init__(name, price, quantity)
         self.broken = broken
 
         Phones.all.append(self)
+    
+    def __repr__(self):
+        return f"{self.__class__.__name__}('{self.name}', {self.price}, {self.quantity}, {self.broken})"
+
+    @classmethod
+    def fix_broken_phones(cls, name, n):
+        for i in Phones.all:
+            if i.name == name:
+                i.broken += n
 
 
 Item.instantiate_from_csv()
@@ -73,6 +94,9 @@ Phones('Phone1', 99.90, 10, 5)
 print(Item.obj_type(dict_items))
 Item.dict_price_items()
 Item.max_value_item()
+Item.add_item('Laptop', 5)
+# Item.sold_item(name_of=(input("Nome do item: ")), n=(input("Quantidade: ")))
+Phones.fix_broken_phones('Phone1', 2)
 print(Phones.all)
 print(Item.all)
 # print(dir(int()))
